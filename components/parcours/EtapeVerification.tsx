@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { getSinistreType } from '@/lib/parcours/sinistre-types';
 import { useParcoursStore } from '@/lib/parcours/store';
+import { useDossiersStore } from '@/lib/parcours/dossiers-store';
 import { buildMockDecision, formatEuro, generateReference } from '@/lib/parcours/mock-decision';
 
 export function EtapeVerification() {
@@ -16,6 +17,7 @@ export function EtapeVerification() {
   const setConsent = useParcoursStore((s) => s.setConsent);
   const submit = useParcoursStore((s) => s.submit);
   const markStepComplete = useParcoursStore((s) => s.markStepComplete);
+  const addDossier = useDossiersStore((s) => s.addDossier);
 
   const [submitting, setSubmitting] = useState(false);
 
@@ -43,6 +45,20 @@ export function EtapeVerification() {
       docsCount,
     });
     submit(reference, decision);
+    addDossier({
+      reference,
+      submittedAt: new Date().toISOString(),
+      sinistreType,
+      assure: {
+        firstName: assure.firstName,
+        lastName: assure.lastName,
+        email: assure.email,
+        contractNumber: assure.contractNumber,
+      },
+      destination: sinistre.destination,
+      amount: Number(sinistre.amount || 0),
+      decision,
+    });
     markStepComplete('verification');
     setTimeout(() => router.push('/declarer/decision'), 250);
   };
