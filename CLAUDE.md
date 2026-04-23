@@ -24,7 +24,7 @@ DocAssistance — Parcours d'assistance dans le monde de l'assurance. Côté cli
 <!-- À compléter : URLs déployées, comptes démo, clés API (jamais de secrets ici). -->
 
 - **Repo** : https://github.com/leonardtwelve/doc-assistance
-- **Déploiement** : à définir (Vercel pressenti)
+- **Déploiement** : Vercel — auto-détection Next.js, aucun `vercel.json` requis. Variables d'env à configurer côté Vercel dashboard (voir `.env.example`).
 
 ## Workflow de session
 

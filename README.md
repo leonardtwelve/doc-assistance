@@ -28,7 +28,11 @@ npm install
 ## Commandes de développement
 
 ```bash
-# (à ajouter au fur et à mesure — npm run dev, build, test, lint)
+npm run dev        # démarrer le dev server sur :3000
+npm run build      # build de production
+npm run start      # lancer le build de prod
+npm run lint       # ESLint (next/core-web-vitals)
+npm run typecheck  # TypeScript strict
 ```
 
 ## Contribuer
